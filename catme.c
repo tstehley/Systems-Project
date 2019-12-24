@@ -2,20 +2,16 @@
 int main(int argc, char *argv[]){
 	FILE *infile;
 	FILE *cat = popen("cat","w");
+	/*FILE *grep= popen("grep","w");*/	
+	char instr[64] = "metamorphosis.txt";
+	char pat[32] = "Gregor";
+	infile = fopen(instr,"r");	
+	char cur[64];
+	do{
+		fgets(cur, 64, infile);
+		fprintf(cat, "%s",cur);
+	}while(cur != EOF);
 	
-	if(argc <2){
-		printf("No Input File Provided.\n");
-	}
-	if(argc <3){
-		printf("No Pattern Provided.\n");
-		return 1;
-	}
-
-	infile = fopen(argv[1],"r");
-	if (infile == NULL){
-		printf("Infile Not Found\n");
-		return 1;
-	}
 /*	char a;
         a = fgetc(infile);
 	while(a!=EOF){
